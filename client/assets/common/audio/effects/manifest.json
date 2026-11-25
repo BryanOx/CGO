@@ -1,0 +1,69 @@
+{
+  "files": {
+    "card-place-1.ogg": {
+      "sha256": "d8f26c33a665dcbdcc6f632f6050bc9dd548feb0d4942d4547615926d3926810",
+      "bytes": 9624,
+      "source": "kenney:casino-audio:1.1"
+    },
+    "card-place-2.ogg": {
+      "sha256": "903d5050718595e87864dd755643b476ab1a5533080dcc2dddc72570d33ba9f8",
+      "bytes": 8046,
+      "source": "kenney:casino-audio:1.1"
+    },
+    "card-place-3.ogg": {
+      "sha256": "1d988631a6e5201ed1bb0d728f2e43a3ec79401258426858793598044ac95841",
+      "bytes": 11503,
+      "source": "kenney:casino-audio:1.1"
+    },
+    "card-place-4.ogg": {
+      "sha256": "18e3ba713b7259605fd27cdc048085ed56cf86b32403f070b6cb125019f77183",
+      "bytes": 9618,
+      "source": "kenney:casino-audio:1.1"
+    },
+    "card-shuffle.ogg": {
+      "sha256": "96c84883a30845ede723a4cf2e8369e9837e7dd4e0d4eb0212b0a7ed21b0f544",
+      "bytes": 30002,
+      "source": "kenney:casino-audio:1.1"
+    },
+    "card-slide-1.ogg": {
+      "sha256": "006cf9822d15d7063f8899e56041f41646df30adb6fbd8b974ee5d5420012690",
+      "bytes": 8833,
+      "source": "kenney:casino-audio:1.1"
+    },
+    "card-slide-2.ogg": {
+      "sha256": "e674a1679ec87b507047fe012d068ad2c412125f56186f0e732684705c2a6888",
+      "bytes": 9042,
+      "source": "kenney:casino-audio:1.1"
+    },
+    "card-slide-3.ogg": {
+      "sha256": "af2ab62656cb3df73316ce5771b8ee1111a840962b21607e3202151e7413c52c",
+      "bytes": 9164,
+      "source": "kenney:casino-audio:1.1"
+    },
+    "card-slide-4.ogg": {
+      "sha256": "b9c82bcdbe6b7d00a06e2546bd2683a9ab082ca5fd090a42882f33eddd925b7f",
+      "bytes": 7912,
+      "source": "kenney:casino-audio:1.1"
+    },
+    "card-slide-5.ogg": {
+      "sha256": "8638ab0c17f029aded0e27a4f9b9bb9f8c621b19a6e9975e855cb40ea63e2201",
+      "bytes": 9180,
+      "source": "kenney:casino-audio:1.1"
+    },
+    "card-slide-6.ogg": {
+      "sha256": "be85da181ac879c20cb667d0f9f156dbdc236d3751737ad27359a15e946430a0",
+      "bytes": 8780,
+      "source": "kenney:casino-audio:1.1"
+    },
+    "card-slide-7.ogg": {
+      "sha256": "bda2040194f43484d03ee3c65ed6fff57251882ea7227abce4214bfa30bf2705",
+      "bytes": 9580,
+      "source": "kenney:casino-audio:1.1"
+    },
+    "card-slide-8.ogg": {
+      "sha256": "95d9aa26f8c63af9934f27a8e3b7e9b583f177640f0bbd6982f12dba52b9ae6b",
+      "bytes": 9863,
+      "source": "kenney:casino-audio:1.1"
+    }
+  }
+}
