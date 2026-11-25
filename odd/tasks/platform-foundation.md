@@ -38,7 +38,7 @@ Forecast: ~1800 authored changed lines across docs, core contracts, UI component
 
 - [ ] P0-1 Inventory repositories, Conga rules, assets, licenses, and toolchain in `docs/audit/phase0.md`.
 - [x] P0-2 Record architecture decisions in `docs/adr/` with an index.
-- [ ] P0-3 Freeze reference-only Conga fixtures in `contracts/fixtures/conga/`; no rules engine port.
+- [x] P0-3 Freeze reference-only Conga fixtures in `contracts/fixtures/conga/`; no rules engine port.
 
 ### Phase 1 — Foundation
 
@@ -69,7 +69,7 @@ Forecast: ~1800 authored changed lines across docs, core contracts, UI component
 |------|---------|--------|--------|
 | P0-1 | `find` + file inspection | pending | — |
 | P0-2 | ADR section readback (9 records, 9 indexed) | `ADR readback: 9 records, 9 indexed, 9/9 with all five sections; missing=0` | `docs(adr): record phase 0 architecture decisions` (this commit) |
-| P0-3 | JSON validation | pending | — |
+| P0-3 | `python3 -m json.tool contracts/fixtures/conga/rules-baseline.json >/dev/null` | exit 0, no output | `test(fixtures): freeze reference-only conga rules baseline` (this commit) |
 | P1-1 | `git status --short` | pending | — |
 | P1-2 | Godot headless parse | pending | — |
 | P1-3 | Godot headless parse | pending | — |
@@ -82,8 +82,9 @@ Forecast: ~1800 authored changed lines across docs, core contracts, UI component
 
 - 2026-11-25: Phase 0 audit completed by a read-only explorer. `congauy` is a Next.js 16 / TypeScript game, not Godot. Godot 4.7.2 is available at the Steam install path but absent from `PATH`. Card art carries CC BY-SA 3.0 with attribution; audio licensing is unresolved and therefore excluded from this phase. No project skill registry exists; global standards apply.
 - Renderer decision recorded in ADR-0001 because the skeleton uses the Mobile renderer while the requirements document proposes Compatibility. Both are evaluated against the mobile-only constraint rather than silently changed.
-- P0-2 closed with nine indexed ADRs covering version and renderer, layering, transport, layout, mocks, assets, registry, headless verification, and deployment. Every record links to a tracker criterion or command; `client/project.godot` was not edited.
+- P0-2 closed as `d72dc12393fb31ebfda0808d50c0493d226bddee` with nine indexed ADRs covering version and renderer, layering, transport, layout, mocks, assets, registry, headless verification, and deployment. Every record links to a tracker criterion or command; `client/project.godot` was not edited.
+- P0-3 froze audit-verified rules facts and an empty behavioral example list; no card IDs, scores, or seeds were invented and no rules engine was ported.
 
 ## Next step
 
-Execute P0-3, close it with a work-unit commit, then proceed to Phase 1 from P1-1.
+Proceed to Phase 1 from P1-1, keeping ADRs and the frozen baseline as inputs.

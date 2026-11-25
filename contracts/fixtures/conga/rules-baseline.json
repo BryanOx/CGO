@@ -1,0 +1,101 @@
+{
+  "phase": "reference-only",
+  "status": "No Conga implementation is derived from this file in Phase 1; rules, bots, and multiplayer remain Phase 2/3 work.",
+  "deck": {
+    "natural_cards": 48,
+    "composition": "4 suits x ranks 1-12",
+    "rank_range": {
+      "min": 1,
+      "max": 12
+    },
+    "jokers": 2,
+    "total_cards": 50
+  },
+  "suits": [
+    "oros",
+    "copas",
+    "espadas",
+    "bastos"
+  ],
+  "players": {
+    "min": 2,
+    "max": 6,
+    "hand_size": 7
+  },
+  "round_flow": {
+    "sequence": "Deal(seed) -> RoundStart(mano receives 8th card) -> Turn(draw -> meld -> discard) -> CanCut? -> Score",
+    "turn_advance": "Discard increments turnsTaken and advances turnPlayer"
+  },
+  "melds": {
+    "min_size": 3,
+    "max_size": 7,
+    "types": [
+      "trio",
+      "escalera",
+      "conga"
+    ]
+  },
+  "cut_legality": "Explicit predicate in the domain, not in UI",
+  "scoring": {
+    "observed_rules": [
+      "Deadwood",
+      "clean 7-run is instant chinchon",
+      "menos diez gives -10",
+      "elimination when cumulative score exceeds the limit"
+    ],
+    "menos_diez_points": -10
+  },
+  "house_rules": {
+    "toggle_count": 13,
+    "defaults": "Uruguayan"
+  },
+  "behavioral_examples": [],
+  "source": {
+    "audit": "docs/audit/phase0.md:38-56",
+    "upstream_repository": "congauy",
+    "facts": {
+      "deck": {
+        "audit": "docs/audit/phase0.md:44",
+        "upstream": [
+          "congauy/src/domain/cards.ts:6-25",
+          "congauy/src/domain/cards.ts:55-69"
+        ]
+      },
+      "suits": {
+        "audit": "docs/audit/phase0.md:45",
+        "upstream": "congauy/src/domain/cards.ts:6-25"
+      },
+      "players": {
+        "audit": "docs/audit/phase0.md:46",
+        "upstream": "congauy/src/domain/match.ts:38-40"
+      },
+      "round_flow": {
+        "audit": "docs/audit/phase0.md:47",
+        "upstream": [
+          "congauy/src/domain/match.ts:4",
+          "congauy/src/domain/match.ts:186-220"
+        ]
+      },
+      "turn_advance": {
+        "audit": "docs/audit/phase0.md:48",
+        "upstream": "congauy/src/domain/match.ts:520-548"
+      },
+      "melds": {
+        "audit": "docs/audit/phase0.md:50",
+        "upstream": "congauy/src/domain/melds.ts:66-115"
+      },
+      "cut_legality": {
+        "audit": "docs/audit/phase0.md:51",
+        "upstream": "congauy/src/domain/cut.ts:39-76"
+      },
+      "scoring": {
+        "audit": "docs/audit/phase0.md:52",
+        "upstream": "congauy/src/domain/scoring.ts:46-105"
+      },
+      "house_rules": {
+        "audit": "docs/audit/phase0.md:49",
+        "upstream": "congauy/src/domain/rules.ts:13-57"
+      }
+    }
+  }
+}
