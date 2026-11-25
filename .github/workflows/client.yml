@@ -1,0 +1,42 @@
+name: Client
+
+on:
+  push:
+    branches:
+      - feat/platform-foundation
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  GODOT_VERSION: 4.7.2-stable
+  GODOT_BIN: ${{ github.workspace }}/.godot-ci/godot.x11.opt.tools.64
+
+jobs:
+  client-headless:
+    name: Godot 4.7.2 headless checks
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Download pinned Godot 4.7.2 stable
+        run: |
+          set -euo pipefail
+          mkdir -p .godot-ci
+          curl -fsSL --retry 3 -o .godot-ci/godot.zip \
+            "https://github.com/godotengine/godot/releases/download/${GODOT_VERSION}/Godot_v${GODOT_VERSION}_linux.x86_64.zip"
+          unzip -q .godot-ci/godot.zip -d .godot-ci
+          chmod +x ".godot-ci/Godot_v${GODOT_VERSION}_linux.x86_64"
+          ln -sf "Godot_v${GODOT_VERSION}_linux.x86_64" .godot-ci/godot.x11.opt.tools.64
+          "$GODOT_BIN" --headless --version
+
+      - name: Headless import and class registration
+        run: '"$GODOT_BIN" --headless --path client --editor --quit'
+
+      - name: GDScript parse sweep
+        run: '"$GODOT_BIN" --headless --path client -s res://tools/check_parse.gd'
+
+      - name: Headless test runner
+        run: '"$GODOT_BIN" --headless --path client -s res://tests/run_tests.gd'

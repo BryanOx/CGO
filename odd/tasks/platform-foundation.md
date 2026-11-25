@@ -36,13 +36,13 @@ Forecast: ~1800 authored changed lines across docs, core contracts, UI component
 
 ### Phase 0 — Audit
 
-- [ ] P0-1 Inventory repositories, Conga rules, assets, licenses, and toolchain in `docs/audit/phase0.md`.
+- [x] P0-1 Inventory repositories, Conga rules, assets, licenses, and toolchain in `docs/audit/phase0.md`.
 - [x] P0-2 Record architecture decisions in `docs/adr/` with an index.
 - [x] P0-3 Freeze reference-only Conga fixtures in `contracts/fixtures/conga/`; no rules engine port.
 
 ### Phase 1 — Foundation
 
-- [ ] P1-1 Initialize monorepo: Git, `.gitignore`, `AGENTS.md`, CI workflow, export presets, dev config.
+- [x] P1-1 Initialize monorepo: Git, `.gitignore`, `AGENTS.md`, CI workflow, export presets, dev config.
 - [ ] P1-2 Implement core contracts, `BackendConfig`, `GameDefinition`, `GameRegistry`, `MatchSession` contract, composition root, and router.
 - [ ] P1-3 Implement development mocks and the replaceable remote HTTP adapter behind service ports.
 - [ ] P1-4 Implement centralized design tokens, generated Theme, safe-area container, and reusable UI components.
@@ -67,10 +67,10 @@ Forecast: ~1800 authored changed lines across docs, core contracts, UI component
 
 | Task | Command | Result | Commit |
 |------|---------|--------|--------|
-| P0-1 | `find` + file inspection | pending | — |
+| P0-1 | `find` + file inspection | completed: repositories, rules, assets, licenses, and toolchain recorded in `docs/audit/phase0.md` | `51f336c` (docs(audit): record phase 0 repository and asset findings) |
 | P0-2 | ADR section readback (9 records, 9 indexed) | `ADR readback: 9 records, 9 indexed, 9/9 with all five sections; missing=0` | `docs(adr): record phase 0 architecture decisions` (this commit) |
 | P0-3 | `python3 -m json.tool contracts/fixtures/conga/rules-baseline.json >/dev/null` | exit 0, no output | `test(fixtures): freeze reference-only conga rules baseline` (this commit) |
-| P1-1 | `git status --short` | pending | — |
+| P1-1 | `G --headless --path client --editor --quit`; `G --headless --path client -s res://tools/check_parse.gd`; `git status --short` | import exit 0, no `SCRIPT ERROR`; parse exit 0 (`1 GDScript files loaded, 0 failures`); status shows only task-owned untracked paths, no congauy or icon changes | `chore(foundation): initialize monorepo rules and pinned headless CI` (this commit) |
 | P1-2 | Godot headless parse | pending | — |
 | P1-3 | Godot headless parse | pending | — |
 | P1-4 | scene instantiation | pending | — |
@@ -84,6 +84,7 @@ Forecast: ~1800 authored changed lines across docs, core contracts, UI component
 - Renderer decision recorded in ADR-0001 because the skeleton uses the Mobile renderer while the requirements document proposes Compatibility. Both are evaluated against the mobile-only constraint rather than silently changed.
 - P0-2 closed as `d72dc12393fb31ebfda0808d50c0493d226bddee` with nine indexed ADRs covering version and renderer, layering, transport, layout, mocks, assets, registry, headless verification, and deployment. Every record links to a tracker criterion or command; `client/project.godot` was not edited.
 - P0-3 froze audit-verified rules facts and an empty behavioral example list; no card IDs, scores, or seeds were invented and no rules engine was ported.
+- P1-1 added repository rules, a quick-path README, pinned Godot 4.7.2 headless CI from the official release URL, an Android export preset with `exclude_filter="tests/*"`, and the in-repo parse sweep. CI calls `tests/run_tests.gd`, which is owned by the P1-6 work unit. `client/project.godot` was not changed: the Mobile renderer in ADR-0001 is preserved.
 
 ## Next step
 
