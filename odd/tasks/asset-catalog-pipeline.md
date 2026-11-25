@@ -36,7 +36,7 @@ The Phase 1 foundation has no `client/assets/` tree and no cosmetic catalog. The
 - [x] AP-2 Build `client/assets/` taxonomy and copy the 50 free card PNGs with attribution, provenance, and manifest; no original modified.
 - [x] AP-3 Add `CosmeticDefinition`, `CosmeticCatalog`, acquisition tiers (`free`, `paid`, `ad_reward`), fallback resolution, and AppContext wiring.
 - [x] AP-4 Use local cosmetic previews in the shop and Conga game-detail screens without changing price or ownership authority.
-- [ ] AP-5 Add headless tests for attribution completeness, stable IDs, tier filtering, fallback, and scene smoke.
+- [x] AP-5 Add headless tests for attribution completeness, stable IDs, tier filtering, fallback, and scene smoke.
 - [ ] AP-6 Audio ingestion — BLOCKED: requires an explicit license decision from the user. Folder exists with a gate note; no audio file is copied until resolved.
 
 ## Acceptance criteria
@@ -59,8 +59,21 @@ The Phase 1 foundation has no `client/assets/` tree and no cosmetic catalog. The
 | AP-2 | `python3 client/tools/verify_card_assets.py` | `Verified 50 card assets.` (exit 0); `cmp` matched all 53 copied source files; `congauy git status --short` empty before and after | `feat(assets): ingest free conga card art with attribution` |
 | AP-3 | `check_parse.gd` + `--quit-after 5` | `Parse check: 61 GDScript files checked, 0 failures.` (exit 0); smoke exit 0, no `SCRIPT ERROR`; temporary resource probe printed the expected item ID, preview, tier, and attribution path | `feat(catalog): add cosmetic definitions with acquisition tiers` |
 | AP-4 | `check_parse.gd`, `run_tests.gd`, temporary preview probe | `Parse check: 61 GDScript files checked, 0 failures.`; `Tests: 6 passed, 0 failed.`; shop textured previews: 1; detail textured previews: 1 | `feat(ui): show local cosmetic previews in shop and game detail` |
-| AP-5 | `run_tests.gd` | pending | — |
+| AP-5 | `run_tests.gd` | `Tests: 8 passed, 0 failed.` (exit 0); parse `63 GDScript files checked, 0 failures.` | `test(assets): verify catalog tiers and asset licenses` |
 | AP-6 | blocked | pending user decision | — |
+
+## Final verification evidence (2026-11-25)
+
+| Command | Exact result |
+|---------|--------------|
+| `python3 client/tools/verify_card_assets.py` | `Verified 50 card assets.` (exit 0) |
+| `"$G" --headless --path client --editor --quit` | exit 0, no `SCRIPT ERROR`; Godot 4.7.2 first scan and class registration completed |
+| `"$G" --headless --path client -s res://tools/check_parse.gd` | `Parse check: 63 GDScript files checked, 0 failures.` (exit 0) |
+| `"$G" --headless --path client -s res://tests/run_tests.gd` | `Tests: 8 passed, 0 failed.` (exit 0) |
+| `"$G" --headless --path client --quit-after 5` | exit 0, no `SCRIPT ERROR` |
+| `git -C /home/bryan/Documentos/projects/congauy status --short` | no output (exit 0) |
+| `git status --short` | only the five AP-5 files staged for this commit |
+| `git log --oneline -6` | `22c4172`, `b232aeb`, `98eaac6`, `3c24cd7`, `20fa398`, `1f5bb10` |
 
 ## Progress and rationale
 
@@ -71,7 +84,9 @@ The Phase 1 foundation has no `client/assets/` tree and no cosmetic catalog. The
 - 2026-11-25 (AP-2): copied 50 PNGs plus the four provenance files with `cp`; `cmp` reported no mismatch. `find client/assets` reports 63 files and zero audio files. Folder gate notes state that tier is metadata, prices and availability are server authority, audio stays excluded, and stable IDs are never filenames.
 - 2026-11-25 (AP-3): added typed `CosmeticDefinition`, `CosmeticTiers`, and `CosmeticCatalog`; `manifest.tres` uses stable ID `conga_deck_classic_red` and resolves the CC BY-SA card back. `main.gd` builds the catalog from an explicit path array and assigns it to `AppContext.cosmetics` without changing `configure()`. Godot-generated `.uid` files are committed to match the existing script convention.
 - 2026-11-25 (AP-4): shop rows resolve stable item IDs through `context.cosmetics` and show a `TextureRect` beside the item tile when a local preview exists. Game detail uses the free tier definition compatible with the current game and shows a muted label when no preview is available. Price, availability, purchase, equip, and wallet behavior are unchanged.
+- 2026-11-25 (AP-5): added `test_cosmetic_catalog.gd` and `test_asset_licenses.gd`; all eight suites pass headlessly. Tests cover stable IDs, all three tiers, fallback, resource values, attribution text, 50 manifest PNGs, zero audio files, and filenames that never equal item IDs.
+- AP-6 remains BLOCKED: the 17 source audio files have no verifiable license, so no audio file is copied and no audio decision is implied by this work.
 
 ## Next step
 
-Execute AP-5, then close it with a work-unit commit. Ask the user for the audio license decision after the card pipeline is verified.
+Ask the user for the audio license decision to unblock AP-6. Push and PR remain user decisions.
