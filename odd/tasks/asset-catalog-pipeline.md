@@ -33,7 +33,7 @@ The Phase 1 foundation has no `client/assets/` tree and no cosmetic catalog. The
 ## Checklist
 
 - [x] AP-1 Record ingestion audit with exact counts, hashes, dimensions, and per-group license status in `docs/audit/asset-ingestion.md`.
-- [ ] AP-2 Build `client/assets/` taxonomy and copy the 50 free card PNGs with attribution, provenance, and manifest; no original modified.
+- [x] AP-2 Build `client/assets/` taxonomy and copy the 50 free card PNGs with attribution, provenance, and manifest; no original modified.
 - [ ] AP-3 Add `CosmeticDefinition`, `CosmeticCatalog`, acquisition tiers (`free`, `paid`, `ad_reward`), fallback resolution, and AppContext wiring.
 - [ ] AP-4 Use local cosmetic previews in the shop and Conga game-detail screens without changing price or ownership authority.
 - [ ] AP-5 Add headless tests for attribution completeness, stable IDs, tier filtering, fallback, and scene smoke.
@@ -56,7 +56,7 @@ The Phase 1 foundation has no `client/assets/` tree and no cosmetic catalog. The
 | Task | Command | Result | Commit |
 |------|---------|--------|--------|
 | AP-1 | `python3 -m py_compile client/tools/verify_card_assets.py` | exit 0, no output | `docs(assets): record ingestion audit and asset verifier` |
-| AP-2 | `sha256sum -c` against copied manifest | pending | — |
+| AP-2 | `python3 client/tools/verify_card_assets.py` | `Verified 50 card assets.` (exit 0); `cmp` matched all 53 copied source files; `congauy git status --short` empty before and after | `feat(assets): ingest free conga card art with attribution` |
 | AP-3 | Godot headless parse | pending | — |
 | AP-4 | scene instantiation | pending | — |
 | AP-5 | `run_tests.gd` | pending | — |
@@ -68,7 +68,8 @@ The Phase 1 foundation has no `client/assets/` tree and no cosmetic catalog. The
 - The generated PNGs are deterministic and already optimized at 546,916 bytes total across 50 files; the 90 MB SVG pack stays in `art_source` territory and is not copied into the mobile build. The manifest sum and on-disk sum agree; an earlier 468,356-byte note does not match either measurement.
 - Acquisition tier is metadata, not a duplicate file tree: paid and ad-reward folders exist with explicit gate notes so future assets can be added without changing screens.
 - 2026-11-25 (AP-1): `docs/audit/asset-ingestion.md` records the deterministic pipeline, measured inventory, and per-group license status. `client/tools/verify_card_assets.py` uses only the Python stdlib and checks manifest presence, SHA-256, byte size, and PNG IHDR dimensions.
+- 2026-11-25 (AP-2): copied 50 PNGs plus the four provenance files with `cp`; `cmp` reported no mismatch. `find client/assets` reports 63 files and zero audio files. Folder gate notes state that tier is metadata, prices and availability are server authority, audio stays excluded, and stable IDs are never filenames.
 
 ## Next step
 
-Execute AP-2, then close it with a work-unit commit before starting AP-3. Ask the user for the audio license decision after the card pipeline is verified.
+Execute AP-3, then close it with a work-unit commit before starting AP-4. Ask the user for the audio license decision after the card pipeline is verified.

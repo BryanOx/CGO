@@ -1,0 +1,5 @@
+Spanish playing card artwork by Basquetteur (Wikimedia Commons).
+Vector adaptation by gjenkins20 (spanish-playing-cards-svg).
+Rasterized to PNG by the congauy card-art pipeline.
+Licensed under CC BY-SA 3.0: https://creativecommons.org/licenses/by-sa/3.0/
+Full attribution and provenance: ATTRIBUTION.md and README.md in this folder.
