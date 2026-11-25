@@ -25,7 +25,16 @@ func _ready() -> void:
 	get_tree().root.theme = theme
 	app_context.configure(config, services, games, theme)
 	var screen_map: Dictionary = {
-		ScreenIds.SPLASH: "res://games/conga/presentation/conga_placeholder.tscn"
+		ScreenIds.SPLASH: "res://features/auth/splash_screen.tscn",
+		ScreenIds.HOME: "res://features/home/home_screen.tscn",
+		ScreenIds.CATALOG: "res://features/home/catalog_screen.tscn",
+		ScreenIds.GAME_DETAIL: "res://features/home/game_detail_screen.tscn",
+		ScreenIds.LEADERBOARD: "res://features/leaderboard/leaderboard_screen.tscn",
+		ScreenIds.PROFILE: "res://features/profile/profile_screen.tscn",
+		ScreenIds.WALLET: "res://features/wallet/wallet_screen.tscn",
+		ScreenIds.SHOP: "res://features/shop/shop_screen.tscn",
+		ScreenIds.INVENTORY: "res://features/inventory/inventory_screen.tscn",
+		ScreenIds.SETTINGS: "res://features/settings/settings_screen.tscn",
 	}
 	router.configure(screen_map, app_context)
 	router.replace(ScreenIds.SPLASH)

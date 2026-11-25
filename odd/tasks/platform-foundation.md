@@ -46,7 +46,7 @@ Forecast: ~1800 authored changed lines across docs, core contracts, UI component
 - [x] P1-2 Implement core contracts, `BackendConfig`, `GameDefinition`, `GameRegistry`, `MatchSession` contract, composition root, and router.
 - [x] P1-3 Implement development mocks and the replaceable remote HTTP adapter behind service ports.
 - [x] P1-4 Implement centralized design tokens, generated Theme, safe-area container, and reusable UI components.
-- [ ] P1-5 Implement screens: splash, home, game catalog, game detail placeholder, leaderboard, profile, wallet, shop, inventory, settings.
+- [x] P1-5 Implement screens: splash, home, game catalog, game detail placeholder, leaderboard, profile, wallet, shop, inventory, settings.
 - [ ] P1-6 Implement automated headless tests and validation tools.
 - [ ] P1-7 Verify: Godot headless import, GDScript parse check, all main scenes instantiate, tests pass, evidence recorded here.
 
@@ -74,7 +74,7 @@ Forecast: ~1800 authored changed lines across docs, core contracts, UI component
 | P1-2 | `G --headless --path client --editor --quit`; `G --headless --path client -s res://tools/check_parse.gd`; `G --headless --path client --quit-after 5`; registry smoke script | import exit 0, no `SCRIPT ERROR`; parse exit 0 (`22 GDScript files checked, 0 failures`); main scene run exit 0, no errors; Conga definition registered once, duplicate rejected, enabled count 1 | `feat(core): add typed ports, game registry, and composition shell` (this commit) |
 | P1-3 | `G --headless --path client --editor --quit`; `G --headless --path client -s res://tools/check_parse.gd`; composition and adapter smoke scripts | import exit 0, no `SCRIPT ERROR`; parse exit 0 (`26 GDScript files checked, 0 failures`); development flags `true,true,true` with local settings, production flags `false,false,false` with `RemoteApiClient`; mock guest/balance/shop/leaderboard `guest-dev-0001 / 200 / 3 / 3`; remote POST and GET against a local JSON server returned `ok=true` with `Idempotency-Key` preserved | `feat(services): add development mocks and remote adapters behind ports` (this commit) |
 | P1-4 | `G --headless --path client --editor --quit`; `G --headless --path client -s res://tools/check_parse.gd`; component instantiation smoke script | import exit 0, no `SCRIPT ERROR`; parse exit 0 (`38 GDScript files checked, 0 failures`); all eight components instantiated and methods exercised with exit 0 and no runtime errors; responsive columns `1/2/3`, touch target 48, Theme Button style present | `feat(ui): add centralized design tokens and reusable mobile components` (this commit) |
-| P1-5 | scene instantiation sweep | pending | — |
+| P1-5 | `G --headless --path client --editor --quit`; `G --headless --path client -s res://tools/check_parse.gd`; `G --headless --path client -s res://tests/_scene_smoke.gd` (temporary harness, removed after evidence); `G --headless --path client --quit-after 5` | import exit 0, no `SCRIPT ERROR`; parse exit 0 (`50 GDScript files checked, 0 failures`); scene sweep exit 0 (`Scene smoke: 11 checked, 0 failed.`; control counts `10/21/19/9/27/16/16/42/36/26/6`); main scene run exit 0 with no output | `feat(shell): add mobile screens and navigation flow` (this commit) |
 | P1-6 | `godot --headless -s res://tests/run_tests.gd` | pending | — |
 | P1-7 | full verification batch | pending | — |
 
@@ -89,7 +89,9 @@ Forecast: ~1800 authored changed lines across docs, core contracts, UI component
 - The parse sweep was hardened to call Godot `--check-only` per script. In-process `ResourceLoader.load` returned cached script objects even after parse errors, so it could not enforce AC-6. The sweep skips itself to avoid reloading the running script.
 - P1-3 wired `ServiceFactory` to mocks plus `LocalSettingsService` in development and `RemoteServices` elsewhere. GDScript forbids redeclaring an inherited member, so adapters assign the inherited `simulated` field in `_init()` instead of redeclaring it. `RemoteApiClient` uses the built-in `HTTPClient` because a GDScript coroutine cannot satisfy the synchronous `ApiClient` port; the HTTP request path includes timeout, JSON parsing, typed error codes, and `Idempotency-Key`.
 - P1-4 added one `DesignTokens` resource with a static accessor, a runtime-generated Theme, responsive breakpoints, safe-area margins, and eight reusable controls. All component colors, sizes, spacing, radii, and durations come from tokens; `main.gd` now builds and applies the generated Theme before navigation.
+- P1-5 added ten typed screen pairs under `client/features/`, a reusable `BottomNav`, and the full ten-entry screen map in `main.gd`; the Conga placeholder was left untouched. `Screen` owns configuration but defines no `_ready()`, and GDScript rejects `super._ready()` against a base without that method, so `FeatureScreen` in `client/features/` supplies the hook while still extending `Screen`. Parent decision: if `super._ready()` must resolve directly on `Screen`, move the hook into `app/screen.gd` in a future app-owned work unit.
+- Headless scene smoke needed an explicit `_ready()` call because SceneTree `_initialize()` adds nodes before they enter the running tree; the splash timer uses `autostart` when it is not yet inside the tree so the harness produces no timer error.
 
 ## Next step
 
-Proceed to Phase 1 from P1-1, keeping ADRs and the frozen baseline as inputs.
+Implement P1-6: the in-repo headless test runner and focused foundation checks, then P1-7 full verification with recorded evidence.
