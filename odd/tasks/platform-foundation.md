@@ -1,6 +1,6 @@
 # Platform Foundation — Phase 0 + Phase 1
 
-Status: in progress. Scope: audit and foundation only. Conga gameplay, multiplayer and real monetization are explicitly out of scope.
+Status: complete. Phase 0 and Phase 1 are verified. Scope: audit and foundation only. Conga gameplay, multiplayer and real monetization are explicitly out of scope.
 
 ## Objective
 
@@ -95,6 +95,9 @@ Forecast: ~1800 authored changed lines across docs, core contracts, UI component
 - The composition test distinguishes `MockServices.build()` from `ServiceFactory.build()`: all mock adapters are simulated, but development composition replaces settings with the real `LocalSettingsService` (`simulated == false`). Mock default assertions therefore read the mock adapter, not user-persisted settings.
 - P1-7 completed the full verification batch with zero parse failures, zero test failures, a clean main-scene run, and a valid frozen fixture. AC-2 through AC-8 now have recorded automated or scope evidence; remaining checks are device-level UX and later-phase features.
 
+- Parent verification (2026-11-25): re-ran the full batch directly. Import exit 0 with 0 `SCRIPT ERROR`; parse exit 0 with `58 GDScript files checked, 0 failures`; tests exit 0 with `Tests: 6 passed, 0 failed.`; main-scene run exit 0 with 0 `SCRIPT ERROR`; fixture JSON exit 0; `git status --short` clean. Static-typing audit found zero untyped variable declarations and zero untyped parameters; `client/project.godot` has no autoload section; 12 `.tscn` scenes exist. Receipt-driven development reports `off (decided by global)`, so no native review transaction was opened.
+- Added `contracts/api/v1/README.md` as the client-facing REST and WebSocket specification. It reserves future endpoint names without implementing a server, and records the no-Socket.IO decision from ADR-0003.
+
 ## Next step
 
-Hand the foundation back for review and archive the change. Device-level validation, Conga rules, bots, multiplayer, ads, purchases, and backend implementation stay outside this phase.
+Phase 0 and Phase 1 are complete and verified. Do not start Conga rules, bots, multiplayer, backend, ads, or purchases until the gates in `docs/audit/phase0.md` are resolved and a new feature document is created. Push and PR creation remain user decisions.
