@@ -97,6 +97,21 @@ The Phase 1 foundation has no `client/assets/` tree and no cosmetic catalog. The
 - 2026-11-25 (AP-7): the music gate is resolved by owner declaration, not by an unlicensed assumption. Commit `7cb791d`, `audio.test.ts:5`, and the archived rename task list supply the HoliznaCC0 provenance. No audio remains excluded.
 - Earlier bullets describe the state before the CC0 decision; the audio gate in `test_asset_licenses.gd` now exempts only `effects/` and `music/` and continues to reject audio anywhere else.
 
+## Branch closure evidence (2026-11-25)
+
+| Check | Command | Exact result |
+|-------|---------|--------------|
+| Deterministic sources stay out of the mobile build | `find client -type f -iname '*.svg'` | only `client/icon.svg` (project icon); no card source SVG under `client/` |
+| License groups remain distinct | readback of `client/assets/common/audio/README.md`, `effects/ATTRIBUTION.md`, `music/ATTRIBUTION.md` | effects: Kenney CC0 with SHA-256 proof; music: owner CC0 declaration with HoliznaCC0 provenance and explicitly no external verification |
+| Stable IDs are path independent | `grep -rnE 'item_id *= *&?".*(png\|ogg\|mp3\|/)' client` + `test_asset_licenses.gd` | no filename-derived ID; tests assert `item_id` never equals a manifest filename; `conga_deck_classic_red` resolves through `CosmeticCatalog` |
+| Documentation encoding | Python `read_bytes().decode('utf-8')` over all `.md` files in `docs`, `odd`, `contracts`, `client/assets`, `art_source` | 32 files, 0 invalid |
+| Android development data export | `"$G" --headless --path client --export-pack Android /tmp/opencode/cgo-export/cgo-debug.pck` + PCK path parser | exit 0; 50 PNG, 13 OGG, 4 MP3, cosmetic manifest via `.tres.remap`; 0 paths under `res://tests/`, 0 under `res://tools/`, 0 card source SVGs |
+| Full APK export | `"$G" --headless --path client --export-debug Android …` | blocked by environment: "A valid Java SDK path is required in Editor Settings." Godot loads the Steam portable `editor_data/editor_settings-4.7.tres`; no override was attempted against the open editor. Data export above is the verified equivalent for asset inclusion. |
+| Reproducibility / idempotence | both Python verifiers run twice; `git status --short`; `git -C congauy status --short` | identical results on both runs; both worktrees clean; no unexpected change |
+| Full test and parse rerun | parse sweep, `run_tests.gd`, smoke boot | `Parse check: 64 GDScript files checked, 0 failures.`; `Tests: 9 passed, 0 failed.`; boot exit 0, 0 `SCRIPT ERROR` |
+
+Two closure fixes were committed: `a9bcdfc` corrected the stale audio note in `art_source/cards/conga/README.md`, and `0d8e846` added `tools/*` to the Android export `exclude_filter` after the first export revealed dev scripts in the package.
+
 ## Next step
 
-All ingestion tasks are complete. Push and PR remain user decisions.
+All ingestion tasks are complete and the branch is ready to publish. Push and PR require an explicit remote URL, base branch, and credential selection; no remote is configured in this clone. No merge until CI is green.
