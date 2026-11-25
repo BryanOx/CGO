@@ -12,6 +12,7 @@ const TEST_SCRIPTS: Array[String] = [
 	"res://tests/test_scenes.gd",
 	"res://tests/test_cosmetic_catalog.gd",
 	"res://tests/test_asset_licenses.gd",
+	"res://tests/test_audio_licenses.gd",
 ]
 
 func _initialize() -> void:

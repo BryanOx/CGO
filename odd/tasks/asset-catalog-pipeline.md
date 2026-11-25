@@ -4,7 +4,11 @@ Status: in progress. Scope: asset ingestion, license evidence, catalog taxonomy,
 
 ## Objective
 
-Ingest the existing CC BY-SA card artwork from `congauy` into the Godot client without modifying the originals, and establish an asset catalog that distinguishes free, future paid, and future ad-reward assets. Prices and availability remain server authority; local resources only resolve visuals and stable IDs.
+Ingest the existing CC BY-SA card artwork and 17 licensed audio files from
+`congauy` into the Godot client without modifying the originals, and establish
+an asset catalog that distinguishes free, future paid, and future ad-reward
+assets. Prices and availability remain server authority; local resources only
+resolve visuals and stable IDs.
 
 ## Problem
 
@@ -13,7 +17,7 @@ The Phase 1 foundation has no `client/assets/` tree and no cosmetic catalog. The
 ## Constraints
 
 - `congauy` files are read-only sources. Copy only; never edit, rename in place, or delete originals.
-- No license is assumed from file possession or filename. Card art has documented CC BY-SA 3.0 terms; audio has no proof.
+- No license is assumed from file possession or filename alone. Card art has documented CC BY-SA 3.0 terms; OGG effects have a file-backed CC0 license; MP3 music is CC0 by explicit owner declaration.
 - Godot built-ins only; no new addons.
 - Static typing, English artifacts, explicit composition, no autoloads (see `AGENTS.md`).
 - Phase 1 scope remains: no Conga rules, bots, multiplayer, ads, real purchases, or backend.
@@ -37,7 +41,8 @@ The Phase 1 foundation has no `client/assets/` tree and no cosmetic catalog. The
 - [x] AP-3 Add `CosmeticDefinition`, `CosmeticCatalog`, acquisition tiers (`free`, `paid`, `ad_reward`), fallback resolution, and AppContext wiring.
 - [x] AP-4 Use local cosmetic previews in the shop and Conga game-detail screens without changing price or ownership authority.
 - [x] AP-5 Add headless tests for attribution completeness, stable IDs, tier filtering, fallback, and scene smoke.
-- [ ] AP-6 Audio ingestion — BLOCKED: requires an explicit license decision from the user. Folder exists with a gate note; no audio file is copied until resolved.
+- [x] AP-6 Audio ingestion — COMPLETE: 13 Kenney CC0 OGG effects and 4 user-declared CC0 MP3 tracks copied verbatim; both manifests, license, and attribution verified.
+- [x] AP-7 Music license decision — COMPLETE by owner declaration. The user declared all four tracks CC0 and instructed that no audio be excluded.
 
 ## Acceptance criteria
 
@@ -45,7 +50,7 @@ The Phase 1 foundation has no `client/assets/` tree and no cosmetic catalog. The
 |----|-----------|-------|
 | AC-1 | All 50 copied card PNGs match the source manifest SHA-256 and measure 160x247. | Hash verification script |
 | AC-2 | Attribution text is present beside the artwork and names the documented authors and CC BY-SA 3.0. | File readback |
-| AC-3 | No file under `congauy/` changed; no audio copied without a license decision. | `git status` in both repos + inventory |
+| AC-3 | No file under `congauy/` changed; all 17 audio files copied with recorded license or owner declaration; no other audio copied. | `git status` in both repos + `verify_audio_assets.py` |
 | AC-4 | Acquisition tiers are explicit in resources and filterable without editing UI or wallet code. | Catalog unit test |
 | AC-5 | Missing asset key resolves to a fallback definition. | Catalog unit test |
 | AC-6 | Shop and game-detail previews use local resources while prices still come from the service port. | Scene smoke + code review |
@@ -60,20 +65,23 @@ The Phase 1 foundation has no `client/assets/` tree and no cosmetic catalog. The
 | AP-3 | `check_parse.gd` + `--quit-after 5` | `Parse check: 61 GDScript files checked, 0 failures.` (exit 0); smoke exit 0, no `SCRIPT ERROR`; temporary resource probe printed the expected item ID, preview, tier, and attribution path | `feat(catalog): add cosmetic definitions with acquisition tiers` |
 | AP-4 | `check_parse.gd`, `run_tests.gd`, temporary preview probe | `Parse check: 61 GDScript files checked, 0 failures.`; `Tests: 6 passed, 0 failed.`; shop textured previews: 1; detail textured previews: 1 | `feat(ui): show local cosmetic previews in shop and game detail` |
 | AP-5 | `run_tests.gd` | `Tests: 8 passed, 0 failed.` (exit 0); parse `63 GDScript files checked, 0 failures.` | `test(assets): verify catalog tiers and asset licenses` |
-| AP-6 | blocked | pending user decision | — |
+| AP-6 | `python3 client/tools/verify_audio_assets.py`; `cmp` of 13 source OGGs against the Kenney pack | `Verified 17 audio assets.` (exit 0); `13 OGG files match Kenney pack byte-for-byte`; license SHA-256 `3d9c53ac…` identical in both copies | `feat(audio): ingest CC0 audio effects and music` |
+| AP-7 | `git -C /home/bryan/Documentos/projects/congauy show 7cb791d --format=%B --no-patch`; `grep -rn -i holizna congauy` | rename commit `7cb791d` and `audio.test.ts:5` name HoliznaCC0; user declares CC0; no separate license file found | `feat(audio): ingest CC0 audio effects and music` |
 
 ## Final verification evidence (2026-11-25)
 
 | Command | Exact result |
 |---------|--------------|
 | `python3 client/tools/verify_card_assets.py` | `Verified 50 card assets.` (exit 0) |
-| `"$G" --headless --path client --editor --quit` | exit 0, no `SCRIPT ERROR`; Godot 4.7.2 first scan and class registration completed |
-| `"$G" --headless --path client -s res://tools/check_parse.gd` | `Parse check: 63 GDScript files checked, 0 failures.` (exit 0) |
-| `"$G" --headless --path client -s res://tests/run_tests.gd` | `Tests: 8 passed, 0 failed.` (exit 0) |
+| `python3 client/tools/verify_audio_assets.py` | `Verified 17 audio assets.` (exit 0) |
+| `"$G" --headless --path client --editor --quit` | exit 0, no `SCRIPT ERROR`; Godot 4.7.2 imported 4 MP3s and registered classes |
+| `"$G" --headless --path client -s res://tools/check_parse.gd` | `Parse check: 64 GDScript files checked, 0 failures.` (exit 0) |
+| `"$G" --headless --path client -s res://tests/run_tests.gd` | `Tests: 9 passed, 0 failed.` (exit 0) |
 | `"$G" --headless --path client --quit-after 5` | exit 0, no `SCRIPT ERROR` |
+| `find client/assets -type f \( -iname '*.mp3' -o -iname '*.ogg' -o -iname '*.wav' \) \| sort` | exactly 13 OGGs in `effects/` and 4 MP3s in `music/`; zero WAV |
 | `git -C /home/bryan/Documentos/projects/congauy status --short` | no output (exit 0) |
-| `git status --short` | only the five AP-5 files staged for this commit |
-| `git log --oneline -6` | `22c4172`, `b232aeb`, `98eaac6`, `3c24cd7`, `20fa398`, `1f5bb10` |
+| `git status --short` | only the AP-6/AP-7 work-unit files staged for this commit |
+| `git log --oneline -8` | `1c0d6f7`, `22c4172`, `b232aeb`, `98eaac6`, `3c24cd7`, `20fa398`, `1f5bb10`, `ab91392` (baseline before this commit) |
 
 ## Progress and rationale
 
@@ -85,8 +93,10 @@ The Phase 1 foundation has no `client/assets/` tree and no cosmetic catalog. The
 - 2026-11-25 (AP-3): added typed `CosmeticDefinition`, `CosmeticTiers`, and `CosmeticCatalog`; `manifest.tres` uses stable ID `conga_deck_classic_red` and resolves the CC BY-SA card back. `main.gd` builds the catalog from an explicit path array and assigns it to `AppContext.cosmetics` without changing `configure()`. Godot-generated `.uid` files are committed to match the existing script convention.
 - 2026-11-25 (AP-4): shop rows resolve stable item IDs through `context.cosmetics` and show a `TextureRect` beside the item tile when a local preview exists. Game detail uses the free tier definition compatible with the current game and shows a muted label when no preview is available. Price, availability, purchase, equip, and wallet behavior are unchanged.
 - 2026-11-25 (AP-5): added `test_cosmetic_catalog.gd` and `test_asset_licenses.gd`; all eight suites pass headlessly. Tests cover stable IDs, all three tiers, fallback, resource values, attribution text, 50 manifest PNGs, zero audio files, and filenames that never equal item IDs.
-- AP-6 remains BLOCKED: the 17 source audio files have no verifiable license, so no audio file is copied and no audio decision is implied by this work.
+- 2026-11-25 (AP-6): the user supplied the Kenney `License.txt` for the 13 OGG effects and declared all 17 audio files CC0 with an explicit instruction to exclude nothing. All 17 files were copied with `cp`; the Python verifier pins SHA-256 and byte counts for both groups, and both attributions record the difference between file-backed license and owner declaration. The Godot-generated `.uid` file is committed to match the script convention; `.import` files remain ignored by the root `.gitignore` and are regenerated locally.
+- 2026-11-25 (AP-7): the music gate is resolved by owner declaration, not by an unlicensed assumption. Commit `7cb791d`, `audio.test.ts:5`, and the archived rename task list supply the HoliznaCC0 provenance. No audio remains excluded.
+- Earlier bullets describe the state before the CC0 decision; the audio gate in `test_asset_licenses.gd` now exempts only `effects/` and `music/` and continues to reject audio anywhere else.
 
 ## Next step
 
-Ask the user for the audio license decision to unblock AP-6. Push and PR remain user decisions.
+All ingestion tasks are complete. Push and PR remain user decisions.

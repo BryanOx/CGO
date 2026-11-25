@@ -1,6 +1,6 @@
 extends TestCase
 
-# AC-1, AC-2, AC-3: licensed card assets are complete and no audio is present.
+# AC-1, AC-2, AC-3: licensed card assets are complete and unlicensed audio is absent.
 
 const MANIFEST_PATH: String = "res://assets/cards/conga/classic_red/manifest.json"
 const CARDS_PATH: String = "res://assets/cards/conga/classic_red/cards"
@@ -10,6 +10,10 @@ const ATTRIBUTION_PATHS: Array[String] = [ATTRIBUTION_MD_PATH, ATTRIBUTION_TXT_P
 const DEFINITION_PATH: String = "res://assets/cosmetics/free/conga/decks/classic_red/manifest.tres"
 const AUDIO_EXTENSIONS: Array[String] = [
 	"ogg", "oga", "mp3", "wav", "m4a", "flac", "aac", "opus", "wma", "aiff", "mid", "midi"
+]
+const LICENSED_AUDIO_PATHS: Array[String] = [
+	"res://assets/common/audio/effects",
+	"res://assets/common/audio/music",
 ]
 
 func run() -> void:
@@ -58,10 +62,16 @@ func _check_audio_gate() -> void:
 	_collect_files("res://assets", paths)
 	var audio: Array[String] = []
 	for path: String in paths:
+		var licensed: bool = false
+		for licensed_path: String in LICENSED_AUDIO_PATHS:
+			if path.begins_with(licensed_path + "/"):
+				licensed = true
+		if licensed:
+			continue
 		var extension: String = path.get_extension().to_lower()
 		if AUDIO_EXTENSIONS.has(extension):
 			audio.append(path)
-	expect(audio.is_empty(), "no audio file should exist under client/assets: %s" % ", ".join(audio))
+	expect(audio.is_empty(), "unlicensed audio should not exist under client/assets: %s" % ", ".join(audio))
 
 func _collect_files(path: String, result: Array[String]) -> void:
 	var directory: DirAccess = DirAccess.open(path)
