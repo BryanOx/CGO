@@ -32,7 +32,7 @@ The Phase 1 foundation has no `client/assets/` tree and no cosmetic catalog. The
 
 ## Checklist
 
-- [ ] AP-1 Record ingestion audit with exact counts, hashes, dimensions, and per-group license status in `docs/audit/asset-ingestion.md`.
+- [x] AP-1 Record ingestion audit with exact counts, hashes, dimensions, and per-group license status in `docs/audit/asset-ingestion.md`.
 - [ ] AP-2 Build `client/assets/` taxonomy and copy the 50 free card PNGs with attribution, provenance, and manifest; no original modified.
 - [ ] AP-3 Add `CosmeticDefinition`, `CosmeticCatalog`, acquisition tiers (`free`, `paid`, `ad_reward`), fallback resolution, and AppContext wiring.
 - [ ] AP-4 Use local cosmetic previews in the shop and Conga game-detail screens without changing price or ownership authority.
@@ -55,7 +55,7 @@ The Phase 1 foundation has no `client/assets/` tree and no cosmetic catalog. The
 
 | Task | Command | Result | Commit |
 |------|---------|--------|--------|
-| AP-1 | file/hash inspection | pending | — |
+| AP-1 | `python3 -m py_compile client/tools/verify_card_assets.py` | exit 0, no output | `docs(assets): record ingestion audit and asset verifier` |
 | AP-2 | `sha256sum -c` against copied manifest | pending | — |
 | AP-3 | Godot headless parse | pending | — |
 | AP-4 | scene instantiation | pending | — |
@@ -65,9 +65,10 @@ The Phase 1 foundation has no `client/assets/` tree and no cosmetic catalog. The
 ## Progress and rationale
 
 - 2026-11-25: read-only inspection confirmed 50 card PNGs at 160x247 with a pinned `manifest.json`; 49 source SVGs with verified `sources.sha256`; 17 audio files (13 OGG effects, 4 MP3 tracks, 28.7 MB) with no license text or tags. `HoliznaCC0` appears only in historical filenames and is not accepted as proof.
-- The generated PNGs are deterministic and already optimized at 468 KB total; the 90 MB SVG pack stays in `art_source` territory and is not copied into the mobile build.
+- The generated PNGs are deterministic and already optimized at 546,916 bytes total across 50 files; the 90 MB SVG pack stays in `art_source` territory and is not copied into the mobile build. The manifest sum and on-disk sum agree; an earlier 468,356-byte note does not match either measurement.
 - Acquisition tier is metadata, not a duplicate file tree: paid and ad-reward folders exist with explicit gate notes so future assets can be added without changing screens.
+- 2026-11-25 (AP-1): `docs/audit/asset-ingestion.md` records the deterministic pipeline, measured inventory, and per-group license status. `client/tools/verify_card_assets.py` uses only the Python stdlib and checks manifest presence, SHA-256, byte size, and PNG IHDR dimensions.
 
 ## Next step
 
-Execute AP-1, then close it with a work-unit commit before starting AP-2. Ask the user for the audio license decision after the card pipeline is verified.
+Execute AP-2, then close it with a work-unit commit before starting AP-3. Ask the user for the audio license decision after the card pipeline is verified.
