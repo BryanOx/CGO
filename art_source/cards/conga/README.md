@@ -11,6 +11,8 @@ optimized 50 PNGs from `public/cards/` into `client/assets/cards/conga/classic_r
 together with the manifest, attribution, and provenance README. No source file
 is modified, moved, or regenerated inside CGO.
 
-Licensed audio is likewise not part of this tree; all source audio stays
-excluded until a license decision is made. Catalog stable IDs are defined in
+Audio is not part of this source tree. The licensed copies live in
+`client/assets/common/audio/`: 13 Kenney CC0 effects with file-backed license
+evidence and 4 HoliznaCC0 tracks under an owner CC0 declaration. See
+`docs/adr/0006-asset-license-policy.md`. Catalog stable IDs are defined in
 resources and are never filenames.
