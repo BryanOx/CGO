@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://app/main.gd" id="1_main"]
+[ext_resource type="Script" path="res://app/app_context.gd" id="2_context"]
+[ext_resource type="Script" path="res://app/router.gd" id="3_router"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_main")
+
+[node name="AppContext" type="Node" parent="."]
+script = ExtResource("2_context")
+
+[node name="Router" type="Node" parent="."]
+script = ExtResource("3_router")
+
+[node name="ScreenHost" type="Node" parent="."]
