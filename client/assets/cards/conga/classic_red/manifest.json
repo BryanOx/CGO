@@ -1,0 +1,304 @@
+{
+  "files": {
+    "oros_1.png": {
+      "sha256": "1ecf7ce3317f9e8e37361acaf5f3dc174d813096315cd5c9cfc9b256148c96c6",
+      "bytes": 20828,
+      "width": 160,
+      "height": 247
+    },
+    "oros_2.png": {
+      "sha256": "e14ad6cac41f49d838d2f90df2bce924ed73ec75d1066c32c34e33a8a1916ea4",
+      "bytes": 8959,
+      "width": 160,
+      "height": 247
+    },
+    "oros_3.png": {
+      "sha256": "6ef1dab02003ff6cf4736f8e769b69f9de650484143da5f60a1c1664b70144d8",
+      "bytes": 11420,
+      "width": 160,
+      "height": 247
+    },
+    "oros_4.png": {
+      "sha256": "833dc34f101422511dcf3a9b2cec6dd1c0d5c80088e773e2ed2fa0d07e6f7c0d",
+      "bytes": 7999,
+      "width": 160,
+      "height": 247
+    },
+    "oros_5.png": {
+      "sha256": "d5f2f254cce2e574c59555b2979305cff024a59b0f1a2da0b134e5f96524219d",
+      "bytes": 12913,
+      "width": 160,
+      "height": 247
+    },
+    "oros_6.png": {
+      "sha256": "0845a75a9f9a8c32428d509f3aeac145a4921e3ad5468827e34a5bdf2b5191a3",
+      "bytes": 11940,
+      "width": 160,
+      "height": 247
+    },
+    "oros_7.png": {
+      "sha256": "5915b240ef6f291a2477d31e5dc466cc34c8a10315c1b2d55a2664087c2ed6c2",
+      "bytes": 14278,
+      "width": 160,
+      "height": 247
+    },
+    "oros_8.png": {
+      "sha256": "cf6fbbfdaa5ccdc0a27846a35ca21d8b9107ce50bbe0b913ea41b7332b7d7993",
+      "bytes": 16504,
+      "width": 160,
+      "height": 247
+    },
+    "oros_9.png": {
+      "sha256": "fd73d97b582ae3792972fad7a7de0dbea8c5fa8c68053c3fdae4a40ee5a4c538",
+      "bytes": 16002,
+      "width": 160,
+      "height": 247
+    },
+    "oros_10.png": {
+      "sha256": "f4fca79d28c557496e6d69ea3762c3cf4f7acd5de65e11f1d84145967b334b0a",
+      "bytes": 11347,
+      "width": 160,
+      "height": 247
+    },
+    "oros_11.png": {
+      "sha256": "11b45db450d8901a34e205c79e5aebc23c49cdc57aa15b2516b9c11c0dcfb04e",
+      "bytes": 14431,
+      "width": 160,
+      "height": 247
+    },
+    "oros_12.png": {
+      "sha256": "0124997238156372c50096f7d6de1c5dd2ff7bfc6ab8d53fb41e9ed3fe174279",
+      "bytes": 13811,
+      "width": 160,
+      "height": 247
+    },
+    "copas_1.png": {
+      "sha256": "65dc8b31f3fe5a901369cb270142f0662011c64f3905888a4d6d2008fc4fb9bb",
+      "bytes": 10824,
+      "width": 160,
+      "height": 247
+    },
+    "copas_2.png": {
+      "sha256": "7bc2702fa574a8a5b9033b8058ee11598f82c9589d1e0a839fc2d7564ec13bb9",
+      "bytes": 6645,
+      "width": 160,
+      "height": 247
+    },
+    "copas_3.png": {
+      "sha256": "b361d1d7aa5a86e3133f74c913a3f053f8793ce6359a4a8815ef6e0b0e435fcd",
+      "bytes": 8149,
+      "width": 160,
+      "height": 247
+    },
+    "copas_4.png": {
+      "sha256": "c675948a494a15dda16d0ce55104f6275102332b1ce021f9f98b72b0d7969813",
+      "bytes": 7811,
+      "width": 160,
+      "height": 247
+    },
+    "copas_5.png": {
+      "sha256": "e355f87497ddedf3caff11c7f0e4c0d7a8639039a42cc38fd21c6e0563fa5758",
+      "bytes": 9319,
+      "width": 160,
+      "height": 247
+    },
+    "copas_6.png": {
+      "sha256": "b18e1c4e20daea8044a01d409920073163fe887414db894ac783b9d0c85d825b",
+      "bytes": 10805,
+      "width": 160,
+      "height": 247
+    },
+    "copas_7.png": {
+      "sha256": "6f2316424ff58e248e25461c244dafc871ff1d631a67935eb4f527ff6fd6a77c",
+      "bytes": 12128,
+      "width": 160,
+      "height": 247
+    },
+    "copas_8.png": {
+      "sha256": "2e5d5f279f086dd3af53752fa88ea609628790d9442de23206113c94dbf9f2ae",
+      "bytes": 12818,
+      "width": 160,
+      "height": 247
+    },
+    "copas_9.png": {
+      "sha256": "432f44f8977bef1b15fdae82c35e54b52967e277def57a7854b93c47e0902192",
+      "bytes": 13172,
+      "width": 160,
+      "height": 247
+    },
+    "copas_10.png": {
+      "sha256": "b01eca01edaef34960910661f0575dacd657dc823e106d746aa1921131a21628",
+      "bytes": 10794,
+      "width": 160,
+      "height": 247
+    },
+    "copas_11.png": {
+      "sha256": "62b5a9aac022b4eb78c4607b19ed1a1439f5cec7ee6e31f144ea599b8fc32fde",
+      "bytes": 13715,
+      "width": 160,
+      "height": 247
+    },
+    "copas_12.png": {
+      "sha256": "44c48af840d06da5ba94bda01967f7771a043bf4b49a89b47ff2fc24c99d5848",
+      "bytes": 13213,
+      "width": 160,
+      "height": 247
+    },
+    "espadas_1.png": {
+      "sha256": "e26333be19b0cd14c7756c8f8001cbb413fc0fc47d96dbb12fb20ad2a052290b",
+      "bytes": 4910,
+      "width": 160,
+      "height": 247
+    },
+    "espadas_2.png": {
+      "sha256": "37def185c7c4c05fdcf0ca5691de8633abd602efb499a13407db1ff3d8ccb69f",
+      "bytes": 5756,
+      "width": 160,
+      "height": 247
+    },
+    "espadas_3.png": {
+      "sha256": "bb83c117a6675082423650f42535aeebb283d783bc99ddd84d3558423061ba9b",
+      "bytes": 7206,
+      "width": 160,
+      "height": 247
+    },
+    "espadas_4.png": {
+      "sha256": "e6307440175b2ac797ce75fb2476b6675910fa939318c226f8e96f8b55881d83",
+      "bytes": 7021,
+      "width": 160,
+      "height": 247
+    },
+    "espadas_5.png": {
+      "sha256": "1d11ed23ecaa9dc37b8b6455a2ebf21b9fd39952f9d15bf8ffa570092eefdaf4",
+      "bytes": 6052,
+      "width": 160,
+      "height": 247
+    },
+    "espadas_6.png": {
+      "sha256": "5f4947ec7457f6b158f6f86a7ea1cf82fd02f8155609df191524bf830bcf2d9b",
+      "bytes": 7080,
+      "width": 160,
+      "height": 247
+    },
+    "espadas_7.png": {
+      "sha256": "c2ca134d109ebe25c1d8caf249f1b3c51a074d72abd8b2f7d0cb20d5e986dcae",
+      "bytes": 7721,
+      "width": 160,
+      "height": 247
+    },
+    "espadas_8.png": {
+      "sha256": "38b8741c007c641ed590d335c7d8e4324abfbf5a3416e6137ca52949ebcfa4a0",
+      "bytes": 8462,
+      "width": 160,
+      "height": 247
+    },
+    "espadas_9.png": {
+      "sha256": "bccba09b6454a42f36ccef3052e7eb164a9fe65a71574d828a7f662d0b51cc22",
+      "bytes": 9166,
+      "width": 160,
+      "height": 247
+    },
+    "espadas_10.png": {
+      "sha256": "e14f963da0dd8b49657fe75d18718d2925a9b40ca5a8b94354111fe34b11ab60",
+      "bytes": 11014,
+      "width": 160,
+      "height": 247
+    },
+    "espadas_11.png": {
+      "sha256": "a9a092da900cd875605108d187dbe294cc86146dc7a3744d7ff1d925932f6c4b",
+      "bytes": 13551,
+      "width": 160,
+      "height": 247
+    },
+    "espadas_12.png": {
+      "sha256": "923bb03ccb05c1e67d07ef3cfc800b75f0079d0c87e395abc0ac1a78c591009f",
+      "bytes": 13182,
+      "width": 160,
+      "height": 247
+    },
+    "bastos_1.png": {
+      "sha256": "dfe823011a1c000497bb44570c6f173c85b7077c605282fd207b179718be8527",
+      "bytes": 4875,
+      "width": 160,
+      "height": 247
+    },
+    "bastos_2.png": {
+      "sha256": "1a88ca2ec5d116cd1bf7d5fb6c7cc6536d7ea1af2ad81f3a2fb87a450b261e59",
+      "bytes": 9413,
+      "width": 160,
+      "height": 247
+    },
+    "bastos_3.png": {
+      "sha256": "43d3dd60dbd486bd1a550228114643ee9579275a6f1ac2b27152070fe99a5ba4",
+      "bytes": 11188,
+      "width": 160,
+      "height": 247
+    },
+    "bastos_4.png": {
+      "sha256": "7c8db54bca8c74ce286231d67ccc4a825cb130168e6bf9fc7e8f486f15f1945d",
+      "bytes": 8047,
+      "width": 160,
+      "height": 247
+    },
+    "bastos_5.png": {
+      "sha256": "024d94e4e4ce8332d29c16b743c35586cd1a5b69a23379bcb95561f0eab36a87",
+      "bytes": 10046,
+      "width": 160,
+      "height": 247
+    },
+    "bastos_6.png": {
+      "sha256": "1827a48e3333befc4c67b471854e4708bbc996bbcc8a9f697b50cdd3e9238e6c",
+      "bytes": 11729,
+      "width": 160,
+      "height": 247
+    },
+    "bastos_7.png": {
+      "sha256": "db1b81ebc2a8004f569b9faaca61bbae613f2d8506757778ad898aa96fc5683a",
+      "bytes": 12395,
+      "width": 160,
+      "height": 247
+    },
+    "bastos_8.png": {
+      "sha256": "b65ece3fdffc538db5f5d8884e0ae5e850dfad69c9c32c0f675c3878ff8bf3d1",
+      "bytes": 14296,
+      "width": 160,
+      "height": 247
+    },
+    "bastos_9.png": {
+      "sha256": "1002d0b67ccd1c9738fb340326fe8b269b03f083c104c32a5cc389d8b53a534b",
+      "bytes": 15048,
+      "width": 160,
+      "height": 247
+    },
+    "bastos_10.png": {
+      "sha256": "f3e3e3f93e3c57d617db138599051d2c81aa9eddd9291c543200f826cb7a1165",
+      "bytes": 11142,
+      "width": 160,
+      "height": 247
+    },
+    "bastos_11.png": {
+      "sha256": "508b161f94ff3acaa2eb16ff239675f1a5e040df0014e391df2e7704139223fc",
+      "bytes": 14082,
+      "width": 160,
+      "height": 247
+    },
+    "bastos_12.png": {
+      "sha256": "96f15cb5d9728a3ae33c6bd07dfa7a34288bfb79ed4da61bbebfa0411bbda0d1",
+      "bytes": 12897,
+      "width": 160,
+      "height": 247
+    },
+    "back.png": {
+      "sha256": "4e3456495d64663ef92390d4d14fcf78c208219ef454136200b8c3aec5e2b3fc",
+      "bytes": 18503,
+      "width": 160,
+      "height": 247
+    },
+    "joker.png": {
+      "sha256": "9e301ff15108557fd147462db2cd5576d7e7f24bbbb1fa5ea7d7c7bd29d33dd2",
+      "bytes": 2309,
+      "width": 160,
+      "height": 247
+    }
+  }
+}

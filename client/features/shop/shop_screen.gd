@@ -74,6 +74,14 @@ func _render_items() -> void:
 
 func _item_row(item: Dictionary) -> HBoxContainer:
 	var row: HBoxContainer = new_row()
+	# Price and availability still come from the service port; the local catalog
+	# lookup below only resolves a visual preview for this stable item ID.
+	var definition: CosmeticDefinition = null
+	if context != null and context.cosmetics != null:
+		definition = context.cosmetics.get_by_item_id(String(item.get("id", "")))
+	var preview: TextureRect = _preview_for(definition)
+	if preview != null:
+		row.add_child(preview)
 	var tile: ItemTile = ItemTile.new()
 	tile.set_item(item)
 	tile.size_flags_horizontal = Control.SIZE_EXPAND_FILL
@@ -84,6 +92,19 @@ func _item_row(item: Dictionary) -> HBoxContainer:
 	buy.pressed.connect(_on_buy_pressed)
 	row.add_child(buy)
 	return row
+
+func _preview_for(definition: CosmeticDefinition) -> TextureRect:
+	if definition == null or definition.preview.is_empty():
+		return null
+	var texture: Texture2D = ResourceLoader.load(definition.preview) as Texture2D
+	if texture == null:
+		return null
+	var preview: TextureRect = TextureRect.new()
+	preview.texture = texture
+	preview.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	preview.custom_minimum_size = Vector2(64.0, 99.0)
+	preview.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	return preview
 
 func _show_purchase_notice() -> void:
 	if _modal != null:

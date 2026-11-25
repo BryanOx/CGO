@@ -50,7 +50,7 @@ Expected version: `4.7.2.stable.official.ed1daf0bf`. No `godot` command exists o
 | Phase | Status | Exit gate |
 |-------|--------|-----------|
 | 0 — Audit | Complete | Inventory, nine ADRs, frozen reference-only Conga fixture. |
-| 1 — Foundation | In progress | Navigable shell, typed ports, mock and remote adapters, design system, headless verification. |
+| 1 — Foundation | Complete | Navigable shell, typed ports, mock and remote adapters, design system, headless verification. |
 | 2 — Vertical slice | Not started | Conga offline rules, bots, tutorial, and rule tests. |
 | 3 — Backend | Not started | Auth, persistence, WebSocket, rooms, and parity. |
 | 4 — Economy | Not started | Ledger, shop, inventory, and equipment. |
@@ -60,8 +60,8 @@ Expected version: `4.7.2.stable.official.ed1daf0bf`. No `godot` command exists o
 
 ## Asset policy
 
-Original files are never modified. `congauy` card art is CC BY-SA 3.0 with mandatory attribution and a pending share-alike gate; its audio license is unknown and excluded. No congauy asset is copied into `client/assets/` without a license entry. See `docs/audit/phase0.md` and ADR-0006 before adding art.
+Original files are never modified. `congauy` card art is CC BY-SA 3.0 with mandatory attribution and a pending share-alike distribution gate. Its 13 OGG effects are Kenney CC0 with file-backed license evidence; its 4 MP3 tracks are CC0 by owner declaration without external verification. No congauy asset is copied into `client/assets/` without a license entry. See `docs/audit/asset-ingestion.md` and ADR-0006 before adding assets.
 
 ## Next step
 
-Follow `odd/tasks/platform-foundation.md`; each task closes with one work-unit commit and recorded command output.
+Phases 0 and 1 are closed; follow the tracker under `odd/tasks/` for new work. Each task closes with one work-unit commit and recorded command output. Push and PR remain user decisions.
