@@ -1,5 +1,9 @@
 extends Node
 
+const COSMETIC_DEFINITION_PATHS: Array[String] = [
+	"res://assets/cosmetics/free/conga/decks/classic_red/manifest.tres",
+]
+
 @onready var app_context: AppContext = $AppContext
 @onready var router: Router = $Router
 @onready var screen_host: Node = $ScreenHost
@@ -24,6 +28,7 @@ func _ready() -> void:
 	var theme: Theme = ThemeFactory.build(tokens)
 	get_tree().root.theme = theme
 	app_context.configure(config, services, games, theme)
+	app_context.cosmetics = _build_cosmetic_catalog()
 	var screen_map: Dictionary = {
 		ScreenIds.SPLASH: "res://features/auth/splash_screen.tscn",
 		ScreenIds.HOME: "res://features/home/home_screen.tscn",
@@ -38,6 +43,14 @@ func _ready() -> void:
 	}
 	router.configure(screen_map, app_context)
 	router.replace(ScreenIds.SPLASH)
+
+func _build_cosmetic_catalog() -> CosmeticCatalog:
+	var definitions: Array[CosmeticDefinition] = []
+	for path: String in COSMETIC_DEFINITION_PATHS:
+		var definition: CosmeticDefinition = ResourceLoader.load(path) as CosmeticDefinition
+		if definition != null:
+			definitions.append(definition)
+	return CosmeticCatalog.new(definitions)
 
 func _load_config() -> BackendConfig:
 	var config: BackendConfig = ResourceLoader.load("res://app/backend_config.tres") as BackendConfig

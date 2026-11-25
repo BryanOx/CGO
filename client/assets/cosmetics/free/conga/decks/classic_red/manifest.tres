@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CosmeticDefinition" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://core/domain/cosmetic_definition.gd" id="1_definition"]
+
+[resource]
+script = ExtResource("1_definition")
+item_id = &"conga_deck_classic_red"
+category = "deck"
+compatible_game_ids = PackedStringArray("conga")
+slot = "deck"
+preview = "res://assets/cards/conga/classic_red/cards/back.png"
+asset_key = &"conga.cards.classic_red"
+fallback_key = &"conga.cards.default"
+acquisition = &"free"
+license_id = &"cc-by-sa-3.0"
+attribution_ref = "res://assets/cards/conga/classic_red/attribution.txt"
+enabled = true

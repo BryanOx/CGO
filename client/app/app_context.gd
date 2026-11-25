@@ -5,6 +5,7 @@ var config: BackendConfig
 var services: ServiceRegistry
 var games: GameRegistry
 var theme: Theme
+var cosmetics: CosmeticCatalog
 
 func configure(
 	p_config: BackendConfig,
