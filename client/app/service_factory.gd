@@ -1,17 +1,11 @@
 class_name ServiceFactory
 extends RefCounted
 
-# Interim composition: fail-explicit ports until P1-3 supplies adapters.
+# Composition root for service adapters. No UI or game logic here.
 
-static func build(_config: BackendConfig) -> ServiceRegistry:
-	return ServiceRegistry.new(
-		AuthService.new(),
-		ProfileService.new(),
-		CatalogService.new(),
-		WalletService.new(),
-		InventoryService.new(),
-		LeaderboardService.new(),
-		SettingsService.new(),
-		ApiClient.new(),
-		RealtimeClient.new()
-	)
+static func build(config: BackendConfig) -> ServiceRegistry:
+	if config != null and config.is_development():
+		var services: ServiceRegistry = MockServices.build(config)
+		services.settings = LocalSettingsService.new()
+		return services
+	return RemoteServices.build(config)
