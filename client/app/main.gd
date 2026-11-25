@@ -15,7 +15,14 @@ func _ready() -> void:
 	) as GameDefinition
 	if conga != null:
 		games.register(conga)
-	var theme: Theme = Theme.new()
+	var tokens: DesignTokens = ResourceLoader.load(
+		"res://shared/theme/design_tokens.tres"
+	) as DesignTokens
+	if tokens == null:
+		tokens = DesignTokens.new()
+	DesignTokens.set_shared(tokens)
+	var theme: Theme = ThemeFactory.build(tokens)
+	get_tree().root.theme = theme
 	app_context.configure(config, services, games, theme)
 	var screen_map: Dictionary = {
 		ScreenIds.SPLASH: "res://games/conga/presentation/conga_placeholder.tscn"

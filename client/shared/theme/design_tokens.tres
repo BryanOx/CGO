@@ -1,0 +1,29 @@
+[gd_resource type="Resource" script_class="DesignTokens" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://shared/theme/design_tokens.gd" id="1_tokens"]
+
+[resource]
+script = ExtResource("1_tokens")
+background = Color(0.06, 0.07, 0.1, 1)
+surface = Color(0.11, 0.13, 0.18, 1)
+surface_alt = Color(0.16, 0.19, 0.26, 1)
+primary = Color(0.25, 0.55, 0.95, 1)
+on_primary = Color(1, 1, 1, 1)
+text = Color(0.94, 0.95, 0.98, 1)
+text_muted = Color(0.65, 0.68, 0.75, 1)
+danger = Color(0.9, 0.28, 0.32, 1)
+success = Color(0.2, 0.72, 0.45, 1)
+space_xs = 4.0
+space_sm = 8.0
+space_md = 16.0
+space_lg = 24.0
+radius_sm = 8.0
+radius_md = 12.0
+touch_target_min = 48.0
+font_caption = 12.0
+font_body = 16.0
+font_title = 20.0
+font_display = 28.0
+toast_duration_seconds = 3.0
+design_width = 360.0
+design_height = 800.0
