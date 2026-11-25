@@ -9,4 +9,6 @@ deduplicated transaction ID. A local file or a client callback never grants an
 item. Tier is metadata only; price and availability remain server authority.
 No ad SDK or reward behavior exists in Phase 1.
 
-Audio stays excluded until a license decision is made.
+All 17 licensed audio assets now live under `res://assets/common/audio/` (13 CC0
+Kenney effects with SHA-256 proof and 4 owner-declared CC0 HoliznaCC0 tracks);
+see `docs/adr/0006-asset-license-policy.md`; no audio belongs in this ad-reward folder.

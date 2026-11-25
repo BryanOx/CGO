@@ -13,5 +13,7 @@ or purchase grant: prices, availability, ownership, and rewards are server
 authority. Local resources never grant an item or change a wallet balance.
 
 Stable IDs such as `conga_deck_classic_red` are defined in resources; filenames
-are never used as commercial IDs. Audio stays excluded until a license decision
-is made.
+are never used as commercial IDs. All 17 licensed audio assets now live under
+`res://assets/common/audio/` (13 CC0 Kenney effects with SHA-256 proof and 4
+owner-declared CC0 HoliznaCC0 tracks); see `docs/adr/0006-asset-license-policy.md`;
+no audio belongs in this cosmetics tree.

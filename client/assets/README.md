@@ -8,7 +8,7 @@ with a recorded license entry are copied here. The complete evidence is in
 
 | Path | Purpose |
 |------|---------|
-| `common/` | Cross-game resources. Audio and font folders are gate notes only. |
+| `common/` | Cross-game resources. Licensed audio under `audio/`; fonts remain a gate note only. |
 | `cards/` | Card artwork grouped by game and deck. |
 | `boards/` | Reserved for board artwork; no assets yet. |
 | `cosmetics/` | Declarative cosmetic catalog resources grouped by acquisition tier. |
@@ -17,7 +17,7 @@ with a recorded license entry are copied here. The complete evidence is in
 
 - A license entry and attribution must exist before any source asset is copied.
 - Original files in the read-only `congauy` repository are never modified, moved, or regenerated inside CGO.
-- Audio stays excluded until an explicit license decision is made. No audio file belongs in this tree yet.
+- All 17 licensed audio assets now live under `res://assets/common/audio/` (13 CC0 Kenney effects with SHA-256 proof and 4 owner-declared CC0 HoliznaCC0 tracks); see `docs/adr/0006-asset-license-policy.md`; no audio belongs outside that folder in this tree.
 - Stable IDs are defined by catalog metadata (`CosmeticDefinition.item_id`); filenames are never commercial IDs or availability keys.
 - Acquisition tier is metadata only. Prices, availability, ownership, and rewards are server authority; local resources resolve visuals only.
 - Editable sources stay outside the export in `art_source/` territory. The 49 source SVGs are not copied into the client.
