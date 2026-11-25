@@ -1,0 +1,33 @@
+# Godot 4 generated cache and import metadata
+client/.godot/
+**/.godot/
+*.import
+
+# Godot visual scripting cache and crash dumps
+*.obj
+*.pdb
+*.log
+crash_*.log
+
+# Export outputs
+builds/
+export/
+*.apk
+*.aab
+*.ipa
+*.x86_64
+*.zip
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+
+# Node toolchain (server is added in a later phase)
+node_modules/
+dist/
+
+# Editor and OS noise
+.DS_Store
+Thumbs.db
+*.swp
